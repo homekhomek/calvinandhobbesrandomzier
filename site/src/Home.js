@@ -6,8 +6,8 @@ const Home = () => {
     const numberOfComics = 2697;
     const [searchParams, setSearchParams] = useSearchParams();
     const generatorModes = [
-        { name: "Complete Chaos!", description: "Generates a completely random Calvin and Hobbes comic, any panel from any comic can be placed in any panel of the generated comic." },
         { name: "Random Split", description: "Generates a Calvin and Hobbes comic that is two random comics combined. Preserves panel order." },
+        { name: "Complete Chaos!", description: "Generates a completely random Calvin and Hobbes comic, any panel from any comic can be placed in any panel of the generated comic." },
         { name: "Random Ordered", description: "Generates a Calvin and Hobbes comic that is multiple random comics, but panel order is preserved." },
         { name: "Normal Comic", description: "Generates a normal Calvin and Hobbes comic!" }
     ]
@@ -33,12 +33,12 @@ const Home = () => {
 
         console.log(generatorMode);
 
-        if (generatorMode == 0) {
+        if (generatorMode == 1) {
             for (let j = 0; j < 4; j++) {
                 newListOfImages.push([Math.floor(Math.random() * numberOfComics), (Math.floor(Math.random() * 4) + 1)]);
             }
         }
-        else if (generatorMode == 1) {
+        else if (generatorMode == 0) {
             var comicOne = Math.floor(Math.random() * numberOfComics);
             var comicTwo = Math.floor(Math.random() * numberOfComics);
             var splitPoint = Math.floor(Math.random() * 3) + 1;
@@ -110,7 +110,7 @@ const Home = () => {
     return (
         <div className="text-center font-permanent-marker">
             <div>
-                <img src="logo.png" className='inline-block w-[200px]'></img>
+                <img src="logo.png" className='inline-block w-[150px]'></img>
             </div>
             <h1 className="text-3xl mt-3">RANDOMIZER</h1>
             <hr className='my-4'></hr>
@@ -128,7 +128,7 @@ const Home = () => {
                 <p className='mt-3'><span onClick={toggleHelp} className='text-red-500 underline text-sm'>(what does this mode do?)</span>  </p>
 
                 {showHelp && (
-                    <p className='text-slate-500 w-[400px] mx-auto text-sm'>{generatorModes[generatorMode].description}</p>
+                    <p className='text-slate-400 mx-auto text-sm'>{generatorModes[generatorMode].description}</p>
                 )}
             </div>
             <div>
@@ -138,6 +138,10 @@ const Home = () => {
                 <ComicCanvas
                     listOfFrames={listOfFrames}
                 ></ComicCanvas>
+            </div>
+
+            <div>
+                <p className='text-sm mt-8 text-slate-400'>share this link to share your comic</p>
             </div>
 
             <hr className='my-10'></hr>
